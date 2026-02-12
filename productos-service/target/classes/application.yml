@@ -1,0 +1,129 @@
+# Configuración del Microservicio de Productos
+# Archivo application.yml - Spring Boot 3.2.1
+
+# Configuración del servidor web (Netty - WebFlux)
+server:
+  port: 8080
+  # Configuración de compresión para mejorar rendimiento
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+# Configuración de Spring
+spring:
+  application:
+    name: productos-service
+  
+  # Configuración de Elasticsearch
+  elasticsearch:
+    # URL de conexión a Elasticsearch
+    # En producción, usar variables de entorno o configuración externa
+    uris: http://localhost:9200
+    # Configuración de conexión
+    connection-timeout: 5s
+    socket-timeout: 30s
+    # Usuario y contraseña (si Elasticsearch tiene seguridad habilitada)
+    # username: elastic
+    # password: changeme
+  
+  # Configuración de RabbitMQ
+  rabbitmq:
+    # Host y puerto de RabbitMQ
+    host: localhost
+    port: 5672
+    # Credenciales de autenticación
+    username: guest
+    password: guest
+    # Virtual host (organización lógica en RabbitMQ)
+    virtual-host: /
+    # Configuración de reintentos y recuperación
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 2s
+          max-attempts: 3
+          max-interval: 10s
+          multiplier: 2
+    # Configuración del publisher
+    publisher-confirm-type: correlated
+    publisher-returns: true
+  
+  # Configuración de Jackson para serialización JSON
+  jackson:
+    # Formato de fechas
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    # Zona horaria
+    time-zone: America/Mexico_City
+    # Serialización
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+    # Deserialización
+    deserialization:
+      fail-on-unknown-properties: false
+
+# Configuración de logging
+logging:
+  level:
+    # Nivel de log general de la aplicación
+    com.microservicios.productos: DEBUG
+    # Nivel de log de Spring
+    org.springframework: INFO
+    # Nivel de log de Elasticsearch
+    org.elasticsearch: WARN
+    # Nivel de log de RabbitMQ
+    org.springframework.amqp: INFO
+  # Patrón de formato de logs
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  # Archivo de logs (opcional)
+  file:
+    name: logs/productos-service.log
+
+# Configuración de SpringDoc OpenAPI (Swagger)
+springdoc:
+  # Habilitar Swagger UI
+  swagger-ui:
+    enabled: true
+    # Ruta de Swagger UI
+    path: /swagger-ui.html
+    # Ordenar operaciones por método HTTP
+    operations-sorter: method
+    # Ordenar tags alfabéticamente
+    tags-sorter: alpha
+  # Ruta del endpoint de OpenAPI JSON
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  # Mostrar Spring Boot Actuator endpoints en Swagger
+  show-actuator: false
+
+# Configuración de actuator (monitoreo y métricas)
+management:
+  endpoints:
+    web:
+      exposure:
+        # Exponer endpoints de health, info y metrics
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  endpoint:
+    health:
+      # Mostrar detalles de health checks
+      show-details: always
+  # Métricas
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Información de la aplicación (endpoint /actuator/info)
+info:
+  app:
+    name: Productos Service
+    description: Microservicio de gestión de productos
+    version: 1.0.0
+    encoding: UTF-8
+    java:
+      version: 21

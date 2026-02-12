@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Elasticsearch para almacenamiento de datos de ambos microservicios
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch-microservicios
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - microservicios-network
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # RabbitMQ para mensajería entre microservicios
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq-microservicios
+    ports:
+      - "5672:5672"   # Puerto AMQP para aplicaciones
+      - "15672:15672" # Puerto interfaz web de gestión
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - microservicios-network
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+networks:
+  microservicios-network:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+    driver: local
+  rabbitmq-data:
+    driver: local

@@ -1,0 +1,42 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: pedidos-service
+  
+  elasticsearch:
+    uris: http://localhost:9200
+  
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    time-zone: America/Mexico_City
+
+# URL del microservicio de productos
+productos:
+  service:
+    url: http://localhost:8080
+
+logging:
+  level:
+    com.microservicios.pedidos: DEBUG
+    org.springframework: INFO
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
