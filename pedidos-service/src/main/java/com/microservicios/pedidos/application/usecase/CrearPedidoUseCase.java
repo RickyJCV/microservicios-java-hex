@@ -6,7 +6,8 @@ import com.microservicios.pedidos.domain.port.PedidoEventPublisher;
 import com.microservicios.pedidos.domain.port.PedidoRepository;
 import com.microservicios.pedidos.domain.port.ProductoServiceClient;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -23,13 +24,19 @@ import java.util.List;
  * - Manejo de transacciones distribuidas
  */
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class CrearPedidoUseCase {
+
+    private static final Logger log = LoggerFactory.getLogger(CrearPedidoUseCase.class);
 
     private final PedidoRepository pedidoRepository;
     private final PedidoEventPublisher eventPublisher;
     private final ProductoServiceClient productoServiceClient;
+
+    public CrearPedidoUseCase(PedidoRepository pedidoRepository, PedidoEventPublisher eventPublisher, ProductoServiceClient productoServiceClient) {
+        this.pedidoRepository = pedidoRepository;
+        this.eventPublisher = eventPublisher;
+        this.productoServiceClient = productoServiceClient;
+    }
 
     /**
      * Ejecuta el caso de uso de creación de pedido.

@@ -4,7 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservicios.productos.domain.model.Producto;
 import com.microservicios.productos.domain.port.ProductoEventPublisher;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -21,15 +22,20 @@ import java.util.Map;
  * Permite comunicación asíncrona y desacoplada entre microservicios.
  */
 @Component
-@RequiredArgsConstructor
-@Slf4j
 public class ProductoEventPublisherAdapter implements ProductoEventPublisher {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductoEventPublisherAdapter.class);
 
     // RabbitTemplate para enviar mensajes (inyectado por Spring)
     private final RabbitTemplate rabbitTemplate;
     
     // ObjectMapper para serializar objetos a JSON
     private final ObjectMapper objectMapper;
+
+    public ProductoEventPublisherAdapter(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.objectMapper = objectMapper;
+    }
 
     // Constantes para el exchange y routing keys
     private static final String EXCHANGE = "productos.exchange";

@@ -4,7 +4,8 @@ import com.microservicios.productos.domain.model.Producto;
 import com.microservicios.productos.domain.port.ProductoEventPublisher;
 import com.microservicios.productos.domain.port.ProductoRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -16,12 +17,17 @@ import java.time.LocalDateTime;
  * Demuestra el manejo de actualización con validación previa y eventos.
  */
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class ActualizarProductoUseCase {
+
+    private static final Logger log = LoggerFactory.getLogger(ActualizarProductoUseCase.class);
 
     private final ProductoRepository productoRepository;
     private final ProductoEventPublisher eventPublisher;
+
+    public ActualizarProductoUseCase(ProductoRepository productoRepository, ProductoEventPublisher eventPublisher) {
+        this.productoRepository = productoRepository;
+        this.eventPublisher = eventPublisher;
+    }
 
     /**
      * Actualiza un producto existente.

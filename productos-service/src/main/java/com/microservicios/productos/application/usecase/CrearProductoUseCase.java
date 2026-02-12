@@ -1,14 +1,16 @@
 package com.microservicios.productos.application.usecase;
 
+import java.math.BigDecimal;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
 import com.microservicios.productos.domain.model.Producto;
 import com.microservicios.productos.domain.port.ProductoEventPublisher;
 import com.microservicios.productos.domain.port.ProductoRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
-import java.math.BigDecimal;
+import reactor.core.publisher.Mono;
 
 /**
  * Caso de uso para crear un nuevo producto.
@@ -20,13 +22,17 @@ import java.math.BigDecimal;
  * - @Slf4j: Lombok genera un logger automáticamente
  */
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class CrearProductoUseCase {
 
-    // Inyección de dependencias mediante constructor (generado por Lombok)
+    private static final Logger log = LoggerFactory.getLogger(CrearProductoUseCase.class);
+
     private final ProductoRepository productoRepository;
     private final ProductoEventPublisher eventPublisher;
+
+    public CrearProductoUseCase(ProductoRepository productoRepository, ProductoEventPublisher eventPublisher) {
+        this.productoRepository = productoRepository;
+        this.eventPublisher = eventPublisher;
+    }
 
     /**
      * Ejecuta el caso de uso de creación de producto.

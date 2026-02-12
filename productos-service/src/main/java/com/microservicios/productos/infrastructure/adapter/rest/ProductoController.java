@@ -11,7 +11,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -37,16 +38,29 @@ import reactor.core.publisher.Mono;
  */
 @RestController
 @RequestMapping("/api/v1/productos")
-@RequiredArgsConstructor
-@Slf4j
 @Tag(name = "Productos", description = "API para gestión de productos")
 public class ProductoController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductoController.class);
 
     // Inyección de casos de uso mediante constructor (generado por Lombok)
     private final CrearProductoUseCase crearProductoUseCase;
     private final BuscarProductoUseCase buscarProductoUseCase;
     private final ActualizarProductoUseCase actualizarProductoUseCase;
     private final EliminarProductoUseCase eliminarProductoUseCase;
+
+    /**
+     * Constructor para inyección de dependencias
+     */
+    public ProductoController(CrearProductoUseCase crearProductoUseCase,
+                            BuscarProductoUseCase buscarProductoUseCase,
+                            ActualizarProductoUseCase actualizarProductoUseCase,
+                            EliminarProductoUseCase eliminarProductoUseCase) {
+        this.crearProductoUseCase = crearProductoUseCase;
+        this.buscarProductoUseCase = buscarProductoUseCase;
+        this.actualizarProductoUseCase = actualizarProductoUseCase;
+        this.eliminarProductoUseCase = eliminarProductoUseCase;
+    }
 
     /**
      * Crea un nuevo producto.

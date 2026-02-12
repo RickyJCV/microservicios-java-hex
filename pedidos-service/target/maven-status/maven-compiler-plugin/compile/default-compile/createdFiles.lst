@@ -1,0 +1,12 @@
+com/microservicios/pedidos/domain/model/ItemPedido.class
+com/microservicios/pedidos/PedidosServiceApplication.class
+com/microservicios/pedidos/domain/model/EstadoPedido.class
+com/microservicios/pedidos/application/usecase/CrearPedidoUseCase$ItemPedidoRequest.class
+com/microservicios/pedidos/application/usecase/CrearPedidoUseCase$ProductoNoEncontradoException.class
+com/microservicios/pedidos/domain/model/Pedido.class
+com/microservicios/pedidos/application/usecase/CrearPedidoUseCase.class
+com/microservicios/pedidos/application/usecase/CrearPedidoUseCase$StockInsuficienteException.class
+com/microservicios/pedidos/domain/port/PedidoEventPublisher.class
+com/microservicios/pedidos/domain/port/ProductoServiceClient$ProductoInfo.class
+com/microservicios/pedidos/domain/port/PedidoRepository.class
+com/microservicios/pedidos/domain/port/ProductoServiceClient.class

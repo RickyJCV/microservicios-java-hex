@@ -1,0 +1,16 @@
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/application/usecase/ActualizarProductoUseCase.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/rest/dto/ProductoDTO.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/rest/ProductoController.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/domain/port/ProductoRepository.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/application/usecase/CrearProductoUseCase.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/elasticsearch/ProductoDocument.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/domain/model/Producto.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/config/RabbitMQConfig.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/config/OpenAPIConfig.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/messaging/ProductoEventPublisherAdapter.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/ProductosServiceApplication.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/elasticsearch/ProductoRepositoryAdapter.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/infrastructure/adapter/elasticsearch/ProductoElasticsearchRepository.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/domain/port/ProductoEventPublisher.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/application/usecase/EliminarProductoUseCase.java
+/Users/ricky/Desktop/microservicios-java-hex/productos-service/src/main/java/com/microservicios/productos/application/usecase/BuscarProductoUseCase.java

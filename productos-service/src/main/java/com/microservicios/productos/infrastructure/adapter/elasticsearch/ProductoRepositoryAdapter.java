@@ -3,7 +3,8 @@ package com.microservicios.productos.infrastructure.adapter.elasticsearch;
 import com.microservicios.productos.domain.model.Producto;
 import com.microservicios.productos.domain.port.ProductoRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -22,12 +23,16 @@ import java.util.UUID;
  * @Component marca la clase como un componente de Spring para inyección de dependencias
  */
 @Component
-@RequiredArgsConstructor
-@Slf4j
 public class ProductoRepositoryAdapter implements ProductoRepository {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductoRepositoryAdapter.class);
 
     // Repositorio de Spring Data Elasticsearch inyectado por constructor (Lombok)
     private final ProductoElasticsearchRepository elasticsearchRepository;
+
+    public ProductoRepositoryAdapter(ProductoElasticsearchRepository elasticsearchRepository) {
+        this.elasticsearchRepository = elasticsearchRepository;
+    }
 
     /**
      * Guarda un producto en Elasticsearch.

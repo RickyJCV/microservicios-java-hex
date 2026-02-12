@@ -1,0 +1,8 @@
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/port/PedidoEventPublisher.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/application/usecase/CrearPedidoUseCase.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/model/EstadoPedido.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/model/ItemPedido.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/port/ProductoServiceClient.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/port/PedidoRepository.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/domain/model/Pedido.java
+/Users/ricky/Desktop/microservicios-java-hex/pedidos-service/src/main/java/com/microservicios/pedidos/PedidosServiceApplication.java
